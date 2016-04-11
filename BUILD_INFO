@@ -1,0 +1,45 @@
+How to build Toxofone with Visual Studio 2015
+
+1. In order to build Toxofone you need additional library libtox.dll
+
+You can compile this library from github repository libtox-vs2015, or you can get it
+from packed libtox distribution file libtox_x86_release.zip.
+
+It need to unpack and copy libtox.dll into SharpTox subdirectory.
+
+ Directory of <Toxofone>\SharpTox
+
+04/07/2016  11:21 AM    <DIR>          .
+...
+03/26/2016  03:56 PM    <DIR>          Dns
+03/26/2016  03:56 PM    <DIR>          Encryption
+04/07/2016  11:12 AM         1,353,728 libtox.dll     <<< libtox.dll
+03/26/2016  03:56 PM    <DIR>          Properties
+04/07/2016  11:17 AM             4,330 SharpTox.csproj
+02/20/2016  12:25 PM             2,551 SharpToxLogger.cs
+               3 File(s)      1,360,609 bytes 
+
+2. There are two solution files: Toxofone.sln and Toxofone-Portable.sln
+
+First solution Toxofone.sln is a usual Visual Studio solution intended to develop/compile/debug.
+
+Second solution Toxofone-Portable.sln is intended to build standalone executable with all depending libraries
+embedded into single executable file.
+
+To build portable version of Toxofone.exe open Toxofone-Portable.sln with Visual Studio 2015, 
+make sure Toxofone-Portable project is set as StartUp project, choose Release configuration and run Rebuild.
+
+After successful build you will see output directory <Toxofone>\Toxofone\bin\Portable-Release containing
+Toxofone.exe
+
+ Directory of <Toxofone>\Toxofone\bin\Portable-Release
+
+04/11/2016  12:05 PM    <DIR>          .
+04/11/2016  12:05 PM    <DIR>          ..
+04/11/2016  12:05 PM         3,635,712 Toxofone.exe   <<< Portable Toxofone.exe
+02/17/2016  02:17 AM               184 Toxofone.exe.config
+...
+               6 File(s)      3,967,724 bytes
+
+This Toxofone.exe contains all managed and unmanaged libraries embedded as resources. On application startup, 
+these libraries will be extracted from resources and attached to main application.
