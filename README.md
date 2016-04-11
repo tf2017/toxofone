@@ -2,11 +2,11 @@
 
 Toxofone is a simple audio/video TOX-client based on win32 native libtox.dll (see [https://github.com/tf2017/libtox-vs2015](https://github.com/tf2017/libtox-vs2015))
 
-Application design is made as simple as possible. The number of entries in the phone book is limited to 10.
-
 Source code is partially based on some components of full-featured .net client Toxy (see [https://github.com/Impyy/Toxy](https://github.com/Impyy/Toxy)).
 
 Also Toxofone uses SharpTox ([https://github.com/Impyy/SharpTox](https://github.com/Impyy/SharpTox)) as managed wrapper over libtox.dll. In addition, the following libraries are used: NAudio ([https://github.com/naudio/NAudio](https://github.com/naudio/NAudio)), AForge.NET ([https://github.com/andrewkirillov/AForge.NET](https://github.com/andrewkirillov/AForge.NET)), Svg ([http://svg.codeplex.com/](http://svg.codeplex.com/)).
+
+Application design is made as simple as possible. The number of entries in the phone book is limited to 10.
 
 
 # Portable application
