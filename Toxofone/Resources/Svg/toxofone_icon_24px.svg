@@ -1,0 +1,28 @@
+<svg
+   fill="#000000"
+   height="24"
+   viewBox="0 0 24 24"
+   width="24"
+   id="svg2"
+   version="1.1">
+  <defs
+     id="defs10" />
+  <path
+     d="M0 0h24v24H0z"
+     fill="none"
+     id="path4" />
+  <path
+     style="fill:#666666"
+     d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H3V4h18v12z"
+     id="path6" />
+  <rect
+     y="4"
+     x="3"
+     height="12"
+     width="18"
+     id="rect4138"
+     style="fill:#aaeeff;fill-opacity:0.75294118;stroke:#000000;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     d="m 12,10 c 1.243125,0 2.25,-1.006875 2.25,-2.2499998 0,-1.243125 -1.006875,-2.25 -2.25,-2.25 -1.243125,0 -2.25,1.006875 -2.25,2.25 C 9.75,8.993125 10.756875,10 12,10 Z m 0,1.125 c -1.501875,0 -4.5,0.75375 -4.5,2.25 l 0,1.125 9,0 0,-1.125 c 0,-1.49625 -2.998125,-2.25 -4.5,-2.25 z"
+     id="path4-2" />
+</svg>

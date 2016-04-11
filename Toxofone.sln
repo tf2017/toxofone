@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toxofone", "Toxofone\Toxofone.csproj", "{7FF08C18-B03E-4B4A-9DFC-5E18FCB741E8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{648EC5E6-BD2C-4DF1-BD4D-3395D2B590F6} = {648EC5E6-BD2C-4DF1-BD4D-3395D2B590F6}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpTox", "SharpTox\SharpTox.csproj", "{B3AB7D92-3D7A-41B2-86D1-D1B256B07663}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio", "NAudio\NAudio.csproj", "{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tfutils", "tfutils\tfutils.vcxproj", "{648EC5E6-BD2C-4DF1-BD4D-3395D2B590F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Svg", "Svg\Svg.csproj", "{886A98C5-37C0-4E8B-885E-30C1D2F98B47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AForge", "AForge", "{AA9D6477-2CC5-4F44-BD41-83574E1CDB99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AForge", "AForge\Core\AForge.csproj", "{631AC093-430F-45F4-BA0C-AF0F0405918A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AForge.Video", "AForge\Video\AForge.Video.csproj", "{809725DC-6502-4732-A51C-DEB7FEA12975}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AForge.Video.DirectShow", "AForge\Video.DirectShow\AForge.Video.DirectShow.csproj", "{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FF08C18-B03E-4B4A-9DFC-5E18FCB741E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7FF08C18-B03E-4B4A-9DFC-5E18FCB741E8}.Debug|x86.Build.0 = Debug|Any CPU
+		{7FF08C18-B03E-4B4A-9DFC-5E18FCB741E8}.Release|x86.ActiveCfg = Release|Any CPU
+		{7FF08C18-B03E-4B4A-9DFC-5E18FCB741E8}.Release|x86.Build.0 = Release|Any CPU
+		{B3AB7D92-3D7A-41B2-86D1-D1B256B07663}.Debug|x86.ActiveCfg = Debug|x86
+		{B3AB7D92-3D7A-41B2-86D1-D1B256B07663}.Debug|x86.Build.0 = Debug|x86
+		{B3AB7D92-3D7A-41B2-86D1-D1B256B07663}.Release|x86.ActiveCfg = Release|x86
+		{B3AB7D92-3D7A-41B2-86D1-D1B256B07663}.Release|x86.Build.0 = Release|x86
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Debug|x86.Build.0 = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Release|x86.ActiveCfg = Release|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Release|x86.Build.0 = Release|Any CPU
+		{648EC5E6-BD2C-4DF1-BD4D-3395D2B590F6}.Debug|x86.ActiveCfg = Debug|Win32
+		{648EC5E6-BD2C-4DF1-BD4D-3395D2B590F6}.Debug|x86.Build.0 = Debug|Win32
+		{648EC5E6-BD2C-4DF1-BD4D-3395D2B590F6}.Release|x86.ActiveCfg = Release|Win32
+		{648EC5E6-BD2C-4DF1-BD4D-3395D2B590F6}.Release|x86.Build.0 = Release|Win32
+		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Debug|x86.Build.0 = Debug|Any CPU
+		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Release|x86.ActiveCfg = Release|Any CPU
+		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Release|x86.Build.0 = Release|Any CPU
+		{631AC093-430F-45F4-BA0C-AF0F0405918A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{631AC093-430F-45F4-BA0C-AF0F0405918A}.Debug|x86.Build.0 = Debug|Any CPU
+		{631AC093-430F-45F4-BA0C-AF0F0405918A}.Release|x86.ActiveCfg = Release|Any CPU
+		{631AC093-430F-45F4-BA0C-AF0F0405918A}.Release|x86.Build.0 = Release|Any CPU
+		{809725DC-6502-4732-A51C-DEB7FEA12975}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{809725DC-6502-4732-A51C-DEB7FEA12975}.Debug|x86.Build.0 = Debug|Any CPU
+		{809725DC-6502-4732-A51C-DEB7FEA12975}.Release|x86.ActiveCfg = Release|Any CPU
+		{809725DC-6502-4732-A51C-DEB7FEA12975}.Release|x86.Build.0 = Release|Any CPU
+		{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE}.Debug|x86.Build.0 = Debug|Any CPU
+		{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE}.Release|x86.ActiveCfg = Release|Any CPU
+		{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{631AC093-430F-45F4-BA0C-AF0F0405918A} = {AA9D6477-2CC5-4F44-BD41-83574E1CDB99}
+		{809725DC-6502-4732-A51C-DEB7FEA12975} = {AA9D6477-2CC5-4F44-BD41-83574E1CDB99}
+		{26CD2CE7-FF63-4669-83B0-7D9C8F3408EE} = {AA9D6477-2CC5-4F44-BD41-83574E1CDB99}
+	EndGlobalSection
+EndGlobal

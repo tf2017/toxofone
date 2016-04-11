@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7FF08C18-B03E-4B4A-9DFC-5E18FCB741E8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Toxofone</RootNamespace>
+    <AssemblyName>Toxofone</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Portable-Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TOXOFONE_PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Portable-Release\</OutputPath>
+    <DefineConstants>TRACE;TOXOFONE_PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Toxofone.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>App.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>toxofone_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Devices\PlaybackDevice.cs" />
+    <Compile Include="EmbeddedAssembly.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Devices\DeviceInfo.cs" />
+    <Compile Include="Devices\RingingDevice.cs" />
+    <Compile Include="UI\AddFriendDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AddFriendDialog.Designer.cs">
+      <DependentUpon>AddFriendDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VideoFrameInfo.cs" />
+    <Compile Include="PowerInfo\NativeMethods.cs" />
+    <Compile Include="UI\SvgPictureBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\SvgPictureBox.Designer.cs">
+      <DependentUpon>SvgPictureBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SvgPictureButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\SvgPictureButton.Designer.cs">
+      <DependentUpon>SvgPictureButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CallStateInfo.cs" />
+    <Compile Include="UI\UserInfo\CurrentUserInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserInfo\CurrentUserInfoControl.Designer.cs">
+      <DependentUpon>CurrentUserInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MediaControl\MediaDeviceStatusControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\MediaControl\MediaDeviceStatusControl.Designer.cs">
+      <DependentUpon>MediaDeviceStatusControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\RecordingDevice.cs" />
+    <Compile Include="Devices\DeviceManager.cs" />
+    <Compile Include="Devices\VideoDevice.cs" />
+    <Compile Include="Managers\CallManager.cs" />
+    <Compile Include="Managers\ConnectionManager.cs" />
+    <Compile Include="Managers\IToxManager.cs" />
+    <Compile Include="Managers\ProfileInfo.cs" />
+    <Compile Include="Managers\ProfileManager.cs" />
+    <Compile Include="Managers\Config.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\FriendRequestInfo.cs" />
+    <Compile Include="UI\PhoneBook\EmptyPhoneBookEntryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\PhoneBook\EmptyPhoneBookEntryControl.Designer.cs">
+      <DependentUpon>EmptyPhoneBookEntryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MediaControl\AudioRecordingDeviceInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\MediaControl\AudioRecordingDeviceInfoControl.Designer.cs">
+      <DependentUpon>AudioRecordingDeviceInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PhoneBook\FriendPhoneBookEntryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\PhoneBook\FriendPhoneBookEntryControl.Designer.cs">
+      <DependentUpon>FriendPhoneBookEntryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PhoneBook\FriendRequestPhoneBookEntryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\PhoneBook\FriendRequestPhoneBookEntryControl.Designer.cs">
+      <DependentUpon>FriendRequestPhoneBookEntryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserInfo\ToxUserStatusControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserInfo\ToxUserStatusControl.Designer.cs">
+      <DependentUpon>ToxUserStatusControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MediaControl\DeviceInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\MediaControl\DeviceInfoControl.Designer.cs">
+      <DependentUpon>DeviceInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UIUtils.cs" />
+    <Compile Include="UI\RemoveFriendDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RemoveFriendDialog.Designer.cs">
+      <DependentUpon>RemoveFriendDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EditCurrentUserDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EditCurrentUserDialog.Designer.cs">
+      <DependentUpon>EditCurrentUserDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\AudioUtils.cs" />
+    <Compile Include="Utils\VideoUtils.cs" />
+    <EmbeddedResource Include="UI\AddFriendDialog.resx">
+      <DependentUpon>AddFriendDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SvgPictureBox.resx">
+      <DependentUpon>SvgPictureBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SvgPictureButton.resx">
+      <DependentUpon>SvgPictureButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserInfo\CurrentUserInfoControl.resx">
+      <DependentUpon>CurrentUserInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MediaControl\MediaDeviceStatusControl.resx">
+      <DependentUpon>MediaDeviceStatusControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI\PhoneBook\EmptyPhoneBookEntryControl.resx">
+      <DependentUpon>EmptyPhoneBookEntryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MediaControl\AudioRecordingDeviceInfoControl.resx">
+      <DependentUpon>AudioRecordingDeviceInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PhoneBook\FriendPhoneBookEntryControl.resx">
+      <DependentUpon>FriendPhoneBookEntryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PhoneBook\FriendRequestPhoneBookEntryControl.resx">
+      <DependentUpon>FriendRequestPhoneBookEntryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserInfo\ToxUserStatusControl.resx">
+      <DependentUpon>ToxUserStatusControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MediaControl\DeviceInfoControl.resx">
+      <DependentUpon>DeviceInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\RemoveFriendDialog.resx">
+      <DependentUpon>RemoveFriendDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EditCurrentUserDialog.resx">
+      <DependentUpon>EditCurrentUserDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AForge\Core\AForge.csproj">
+      <Project>{631ac093-430f-45f4-ba0c-af0f0405918a}</Project>
+      <Name>AForge</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\AForge\Video.DirectShow\AForge.Video.DirectShow.csproj">
+      <Project>{26cd2ce7-ff63-4669-83b0-7d9c8f3408ee}</Project>
+      <Name>AForge.Video.DirectShow</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\AForge\Video\AForge.Video.csproj">
+      <Project>{809725dc-6502-4732-a51c-deb7fea12975}</Project>
+      <Name>AForge.Video</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\NAudio\NAudio.csproj">
+      <Project>{da4f02e3-0b5e-42cd-b8d9-5583fa51d66e}</Project>
+      <Name>NAudio</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\SharpTox\SharpTox.csproj">
+      <Project>{b3ab7d92-3d7a-41b2-86d1-d1b256b07663}</Project>
+      <Name>SharpTox</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Svg\Svg.csproj">
+      <Project>{886a98c5-37c0-4e8b-885e-30c1d2f98b47}</Project>
+      <Name>Svg</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\playback_device_black_24px.svg" />
+    <EmbeddedResource Include="Resources\Svg\playback_device_off_black_24px.svg" />
+    <EmbeddedResource Include="Resources\Svg\recording_device_black_24px.svg" />
+    <EmbeddedResource Include="Resources\Svg\recording_device_off_black_24px.svg" />
+    <EmbeddedResource Include="Resources\Svg\ringing_device_black_24px.svg" />
+    <EmbeddedResource Include="Resources\Svg\ringing_device_off_black_24px.svg" />
+    <EmbeddedResource Include="Resources\Svg\video_device_black_24px.svg" />
+    <EmbeddedResource Include="Resources\Svg\video_device_off_black_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\settings_black_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\play_circle_outline_black_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\add_circle_outline_black_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone_book_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\remove_circle_outline_black_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\video_call_black_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\video_device_gray50_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\playback_device_gray50_24px.svg" />
+    <EmbeddedResource Include="Resources\Svg\recording_device_gray50_24px.svg" />
+    <EmbeddedResource Include="Resources\Svg\ringing_device_gray50_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\call_end_red_36px.svg" />
+    <EmbeddedResource Include="Resources\Svg\call_green_36px.svg">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\call_end_gray50_36px.svg" />
+    <EmbeddedResource Include="Resources\Svg\call_gray50_36px.svg" />
+    <EmbeddedResource Include="Resources\Svg\remove_circle_outline_gray50_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_away_16px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_away_notification_16px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_busy_16px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_busy_notification_16px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_invisible_16px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_offline_16px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_offline_notification_16px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_online_16px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_online_notification_16px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\call_end_in_circle_red_60px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\play_circle_outline_gray50_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\settings_gray50_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\call_end_red_dimmed_36px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\call_green_dimmed_36px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\call_end_in_circle_red_dimmed_60px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\phone_ring.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\local_video_camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\old_fashion_phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\bell_chord.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\toxofone_icon_24px.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Svg\warning_48px.svg">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Svg\block_friend_video_36px.svg" />
+    <EmbeddedResource Include="Resources\Svg\block_friend_video_dimmed_36px.svg" />
+    <EmbeddedResource Include="Resources\Svg\play_friend_video_36px.svg" />
+    <EmbeddedResource Include="Resources\Svg\play_friend_video_dimmed_36px.svg" />
+    <EmbeddedResource Include="Resources\Svg\cancel_circle_dark_red_24px.svg" />
+    <EmbeddedResource Include="Resources\Svg\check_circle_dark_green_24px.svg" />
+    <EmbeddedResource Include="AForge.dll" />
+    <EmbeddedResource Include="AForge.Video.DirectShow.dll" />
+    <EmbeddedResource Include="AForge.Video.dll" />
+    <EmbeddedResource Include="libtox.dll" />
+    <EmbeddedResource Include="NAudio.dll" />
+    <EmbeddedResource Include="SharpTox.dll" />
+    <EmbeddedResource Include="Svg.dll" />
+    <EmbeddedResource Include="tfutils.dll" />
+    <Content Include="toxofone_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>copy /V /Y $(SolutionDir)AForge\Core\bin\Release\AForge.dll $(ProjectDir)
+copy /V /Y $(SolutionDir)AForge\Video\bin\Release\AForge.Video.dll $(ProjectDir)
+copy /V /Y $(SolutionDir)AForge\Video.DirectShow\bin\Release\AForge.Video.DirectShow.dll $(ProjectDir)
+copy /V /Y $(SolutionDir)dll_out\Release\tfutils.dll $(ProjectDir)
+copy /V /Y $(SolutionDir)NAudio\bin\Release\NAudio.dll $(ProjectDir)
+copy /V /Y $(SolutionDir)SharpTox\bin\x86\Release\SharpTox.dll $(ProjectDir)
+copy /V /Y $(SolutionDir)SharpTox\libtox.dll $(ProjectDir)
+copy /V /Y $(SolutionDir)Svg\bin\Release\Svg.dll $(ProjectDir)</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

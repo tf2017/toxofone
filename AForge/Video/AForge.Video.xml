@@ -1,0 +1,465 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AForge.Video</name>
+    </assembly>
+    <members>
+        <member name="T:AForge.Video.ByteArrayUtils">
+            <summary>
+            Some internal utilities for handling arrays.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Video.ByteArrayUtils.Compare(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            Check if the array contains needle at specified position.
+            </summary>
+            
+            <param name="array">Source array to check for needle.</param>
+            <param name="needle">Needle we are searching for.</param>
+            <param name="startIndex">Start index in source array.</param>
+            
+            <returns>Returns <b>true</b> if the source array contains the needle at
+            the specified index. Otherwise it returns <b>false</b>.</returns>
+            
+        </member>
+        <member name="M:AForge.Video.ByteArrayUtils.Find(System.Byte[],System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Find subarray in the source array.
+            </summary>
+            
+            <param name="array">Source array to search for needle.</param>
+            <param name="needle">Needle we are searching for.</param>
+            <param name="startIndex">Start index in source array.</param>
+            <param name="sourceLength">Number of bytes in source array, where the needle is searched for.</param>
+            
+            <returns>Returns starting position of the needle if it was found or <b>-1</b> otherwise.</returns>
+            
+        </member>
+        <member name="T:AForge.Video.VideoException">
+            <summary>
+            Video related exception.
+            </summary>
+            
+            <remarks><para>The exception is thrown in the case of some video related issues, like
+            failure of initializing codec, compression, etc.</para></remarks>
+            
+        </member>
+        <member name="M:AForge.Video.VideoException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Video.VideoException"/> class.
+            </summary>
+            
+            <param name="message">Exception's message.</param>
+            
+        </member>
+        <member name="T:AForge.Video.IVideoSource">
+            <summary>
+            Video source interface.
+            </summary>
+            
+            <remarks>The interface describes common methods for different type of video sources.</remarks>
+            
+        </member>
+        <member name="E:AForge.Video.IVideoSource.NewFrame">
+            <summary>
+            New frame event.
+            </summary>
+            
+            <remarks><para>This event is used to notify clients about new available video frame.</para>
+            
+            <para><note>Since video source may have multiple clients, each client is responsible for
+            making a copy (cloning) of the passed video frame, but video source is responsible for
+            disposing its own original copy after notifying of clients.</note></para>
+            </remarks>
+            
+        </member>
+        <member name="E:AForge.Video.IVideoSource.VideoSourceError">
+            <summary>
+            Video source error event.
+            </summary>
+            
+            <remarks>This event is used to notify clients about any type of errors occurred in
+            video source object, for example internal exceptions.</remarks>
+            
+        </member>
+        <member name="E:AForge.Video.IVideoSource.PlayingFinished">
+            <summary>
+            Video playing finished event.
+            </summary>
+            
+            <remarks><para>This event is used to notify clients that the video playing has finished.</para>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Video.IVideoSource.Source">
+            <summary>
+            Video source.
+            </summary>
+            
+            <remarks>The meaning of the property depends on particular video source.
+            Depending on video source it may be a file name, URL or any other string
+            describing the video source.</remarks>
+            
+        </member>
+        <member name="P:AForge.Video.IVideoSource.FramesReceived">
+            <summary>
+            Received frames count.
+            </summary>
+            
+            <remarks>Number of frames the video source provided from the moment of the last
+            access to the property.
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Video.IVideoSource.BytesReceived">
+            <summary>
+            Received bytes count.
+            </summary>
+            
+            <remarks>Number of bytes the video source provided from the moment of the last
+            access to the property.
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Video.IVideoSource.IsRunning">
+            <summary>
+            State of the video source.
+            </summary>
+            
+            <remarks>Current state of video source object - running or not.</remarks>
+            
+        </member>
+        <member name="M:AForge.Video.IVideoSource.Start">
+            <summary>
+            Start video source.
+            </summary>
+            
+            <remarks>Starts video source and return execution to caller. Video source
+            object creates background thread and notifies about new frames with the
+            help of <see cref="E:AForge.Video.IVideoSource.NewFrame"/> event.</remarks>
+            
+        </member>
+        <member name="M:AForge.Video.IVideoSource.SignalToStop">
+            <summary>
+            Signal video source to stop its work.
+            </summary>
+            
+            <remarks>Signals video source to stop its background thread, stop to
+            provide new frames and free resources.</remarks>
+            
+        </member>
+        <member name="M:AForge.Video.IVideoSource.WaitForStop">
+            <summary>
+            Wait for video source has stopped.
+            </summary>
+            
+            <remarks>Waits for video source stopping after it was signalled to stop using
+            <see cref="M:AForge.Video.IVideoSource.SignalToStop"/> method.</remarks>
+            
+        </member>
+        <member name="M:AForge.Video.IVideoSource.Stop">
+            <summary>
+            Stop video source.
+            </summary>
+            
+            <remarks>Stops video source aborting its thread.</remarks>
+            
+        </member>
+        <member name="T:AForge.Video.ScreenCaptureStream">
+            <summary>
+            Screen capture video source.
+            </summary>
+            
+            <remarks><para>The video source constantly captures the desktop screen.</para>
+            
+            <para>Sample usage:</para>
+            <code>
+            // get entire desktop area size
+            Rectangle screenArea = Rectangle.Empty;
+            foreach ( System.Windows.Forms.Screen screen in 
+                      System.Windows.Forms.Screen.AllScreens )
+            {
+                screenArea = Rectangle.Union( screenArea, screen.Bounds );
+            }
+                
+            // create screen capture video source
+            ScreenCaptureStream stream = new ScreenCaptureStream( screenArea );
+            
+            // set NewFrame event handler
+            stream.NewFrame += new NewFrameEventHandler( video_NewFrame );
+            
+            // start the video source
+            stream.Start( );
+            
+            // ...
+            // signal to stop
+            stream.SignalToStop( );
+            // ...
+            
+            private void video_NewFrame( object sender, NewFrameEventArgs eventArgs )
+            {
+                // get new frame
+                Bitmap bitmap = eventArgs.Frame;
+                // process the frame
+            }
+            </code>
+            </remarks>
+            
+        </member>
+        <member name="E:AForge.Video.ScreenCaptureStream.NewFrame">
+            <summary>
+            New frame event.
+            </summary>
+            
+            <remarks><para>Notifies clients about new available frame from video source.</para>
+            
+            <para><note>Since video source may have multiple clients, each client is responsible for
+            making a copy (cloning) of the passed video frame, because the video source disposes its
+            own original copy after notifying of clients.</note></para>
+            </remarks>
+            
+        </member>
+        <member name="E:AForge.Video.ScreenCaptureStream.VideoSourceError">
+            <summary>
+            Video source error event.
+            </summary>
+            
+            <remarks>This event is used to notify clients about any type of errors occurred in
+            video source object, for example internal exceptions.</remarks>
+            
+        </member>
+        <member name="E:AForge.Video.ScreenCaptureStream.PlayingFinished">
+            <summary>
+            Video playing finished event.
+            </summary>
+            
+            <remarks><para>This event is used to notify clients that the video playing has finished.</para>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Video.ScreenCaptureStream.Source">
+            <summary>
+            Video source.
+            </summary>
+            
+        </member>
+        <member name="P:AForge.Video.ScreenCaptureStream.Region">
+            <summary>
+            Gets or sets the screen capture region.
+            </summary>
+            
+            <remarks><para>This property specifies which region (rectangle) of the screen to capture. It may cover multiple displays
+            if those are available in the system.</para>
+            
+            <para><note>The property must be set before starting video source to have any effect.</note></para>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Video.ScreenCaptureStream.FrameInterval">
+            <summary>
+            Time interval between making screen shots, ms.
+            </summary>
+            
+            <remarks><para>The property specifies time interval in milliseconds between consequent screen captures.
+            Expected frame rate of the stream should be approximately 1000/FrameInteval.</para>
+            
+            <para>If the property is set to 0, then the stream will capture screen as fast as the system allows.</para>
+            
+            <para>Default value is set to <b>100</b>.</para>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Video.ScreenCaptureStream.FramesReceived">
+            <summary>
+            Received frames count.
+            </summary>
+            
+            <remarks>Number of frames the video source provided from the moment of the last
+            access to the property.
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Video.ScreenCaptureStream.BytesReceived">
+            <summary>
+            Received bytes count.
+            </summary>
+            
+            <remarks><para><note>The property is not implemented for this video source and always returns 0.</note></para>
+            </remarks>
+            
+        </member>
+        <member name="P:AForge.Video.ScreenCaptureStream.IsRunning">
+            <summary>
+            State of the video source.
+            </summary>
+            
+            <remarks>Current state of video source object - running or not.</remarks>
+            
+        </member>
+        <member name="M:AForge.Video.ScreenCaptureStream.#ctor(System.Drawing.Rectangle)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Video.ScreenCaptureStream"/> class.
+            </summary>
+            
+            <param name="region">Screen's rectangle to capture (the rectangle may cover multiple displays).</param>
+            
+        </member>
+        <member name="M:AForge.Video.ScreenCaptureStream.#ctor(System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Video.ScreenCaptureStream"/> class.
+            </summary>
+            
+            <param name="region">Screen's rectangle to capture (the rectangle may cover multiple displays).</param>
+            <param name="frameInterval">Time interval between making screen shots, ms.</param>
+            
+        </member>
+        <member name="M:AForge.Video.ScreenCaptureStream.Start">
+            <summary>
+            Start video source.
+            </summary>
+            
+            <remarks>Starts video source and return execution to caller. Video source
+            object creates background thread and notifies about new frames with the
+            help of <see cref="E:AForge.Video.ScreenCaptureStream.NewFrame"/> event.</remarks>
+            
+            <exception cref="T:System.ArgumentException">Video source is not specified.</exception>
+            
+        </member>
+        <member name="M:AForge.Video.ScreenCaptureStream.SignalToStop">
+            <summary>
+            Signal video source to stop its work.
+            </summary>
+            
+            <remarks>Signals video source to stop its background thread, stop to
+            provide new frames and free resources.</remarks>
+            
+        </member>
+        <member name="M:AForge.Video.ScreenCaptureStream.WaitForStop">
+            <summary>
+            Wait for video source has stopped.
+            </summary>
+            
+            <remarks>Waits for source stopping after it was signalled to stop using
+            <see cref="M:AForge.Video.ScreenCaptureStream.SignalToStop"/> method.</remarks>
+            
+        </member>
+        <member name="M:AForge.Video.ScreenCaptureStream.Stop">
+            <summary>
+            Stop video source.
+            </summary>
+            
+            <remarks><para>Stops video source aborting its thread.</para>
+            
+            <para><note>Since the method aborts background thread, its usage is highly not preferred
+            and should be done only if there are no other options. The correct way of stopping camera
+            is <see cref="M:AForge.Video.ScreenCaptureStream.SignalToStop">signaling it stop</see> and then
+            <see cref="M:AForge.Video.ScreenCaptureStream.WaitForStop">waiting</see> for background thread's completion.</note></para>
+            </remarks>
+            
+        </member>
+        <member name="M:AForge.Video.ScreenCaptureStream.Free">
+            <summary>
+            Free resource.
+            </summary>
+            
+        </member>
+        <member name="T:AForge.Video.NewFrameEventHandler">
+            <summary>
+            Delegate for new frame event handler.
+            </summary>
+            
+            <param name="sender">Sender object.</param>
+            <param name="eventArgs">Event arguments.</param>
+            
+        </member>
+        <member name="T:AForge.Video.VideoSourceErrorEventHandler">
+            <summary>
+            Delegate for video source error event handler.
+            </summary>
+            
+            <param name="sender">Sender object.</param>
+            <param name="eventArgs">Event arguments.</param>
+            
+        </member>
+        <member name="T:AForge.Video.PlayingFinishedEventHandler">
+            <summary>
+            Delegate for playing finished event handler.
+            </summary>
+            
+            <param name="sender">Sender object.</param>
+            <param name="reason">Reason of finishing video playing.</param>
+            
+        </member>
+        <member name="T:AForge.Video.ReasonToFinishPlaying">
+            <summary>
+            Reason of finishing video playing.
+            </summary>
+            
+            <remarks><para>When video source class fire the <see cref="E:AForge.Video.IVideoSource.PlayingFinished"/> event, they
+            need to specify reason of finishing video playing. For example, it may be end of stream reached.</para></remarks>
+            
+        </member>
+        <member name="F:AForge.Video.ReasonToFinishPlaying.EndOfStreamReached">
+            <summary>
+            Video playing has finished because it end was reached.
+            </summary>
+        </member>
+        <member name="F:AForge.Video.ReasonToFinishPlaying.StoppedByUser">
+            <summary>
+            Video playing has finished because it was stopped by user.
+            </summary>
+        </member>
+        <member name="F:AForge.Video.ReasonToFinishPlaying.DeviceLost">
+            <summary>
+            Video playing has finished because the device was lost (unplugged).
+            </summary>
+        </member>
+        <member name="F:AForge.Video.ReasonToFinishPlaying.VideoSourceError">
+            <summary>
+            Video playing has finished because of some error happened the video source (camera, stream, file, etc.).
+            A error reporting event usually is fired to provide error information.
+            </summary>
+        </member>
+        <member name="T:AForge.Video.NewFrameEventArgs">
+            <summary>
+            Arguments for new frame event from video source.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Video.NewFrameEventArgs.#ctor(System.Drawing.Bitmap)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Video.NewFrameEventArgs"/> class.
+            </summary>
+            
+            <param name="frame">New frame.</param>
+            
+        </member>
+        <member name="P:AForge.Video.NewFrameEventArgs.Frame">
+            <summary>
+            New frame from video source.
+            </summary>
+            
+        </member>
+        <member name="T:AForge.Video.VideoSourceErrorEventArgs">
+            <summary>
+            Arguments for video source error event from video source.
+            </summary>
+            
+        </member>
+        <member name="M:AForge.Video.VideoSourceErrorEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AForge.Video.VideoSourceErrorEventArgs"/> class.
+            </summary>
+            
+            <param name="description">Error description.</param>
+            
+        </member>
+        <member name="P:AForge.Video.VideoSourceErrorEventArgs.Description">
+            <summary>
+            Video source error description.
+            </summary>
+            
+        </member>
+    </members>
+</doc>
