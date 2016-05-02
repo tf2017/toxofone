@@ -691,7 +691,7 @@ namespace AForge.Video.DirectShow
                 }
                 catch (Exception ex )
                 {
-                    AForgeLogger.Instance.LogError(ex.Message);
+                    AForgeLogger.Instance.LogError(ex.Message, new System.Diagnostics.StackTrace(ex));
                     throw new ApplicationException( "Failed creating device object for moniker.", ex );
                 }
 
@@ -842,7 +842,7 @@ namespace AForge.Video.DirectShow
                 }
                 catch ( Exception ex )
                 {
-                    AForgeLogger.Instance.LogError(ex.Message);
+                    AForgeLogger.Instance.LogError(ex.Message, new System.Diagnostics.StackTrace(ex));
                     throw new ApplicationException( "Failed creating device object for moniker.", ex );
                 }
 
@@ -897,7 +897,7 @@ namespace AForge.Video.DirectShow
                 }
                 catch (Exception ex )
                 {
-                    AForgeLogger.Instance.LogError(ex.Message);
+                    AForgeLogger.Instance.LogError(ex.Message, new System.Diagnostics.StackTrace(ex));
                     throw new ApplicationException( "Failed creating device object for moniker.", ex );
                 }
 
@@ -955,7 +955,7 @@ namespace AForge.Video.DirectShow
                 }
                 catch (Exception ex )
                 {
-                    AForgeLogger.Instance.LogError(ex.Message);
+                    AForgeLogger.Instance.LogError(ex.Message, new System.Diagnostics.StackTrace(ex));
                     throw new ApplicationException( "Failed creating device object for moniker.", ex );
                 }
 
@@ -1053,7 +1053,7 @@ namespace AForge.Video.DirectShow
                 catch (Exception ex )
                 {
                     // some camera drivers may not support IAMVideoControl interface
-                    AForgeLogger.Instance.LogError(ex.Message);
+                    AForgeLogger.Instance.LogError(ex.Message, new System.Diagnostics.StackTrace(ex));
                 }
 
                 // get type of sample grabber
@@ -1351,7 +1351,7 @@ namespace AForge.Video.DirectShow
                 }
                 catch (Exception ex )
                 {
-                    AForgeLogger.Instance.LogError(ex.Message);
+                    AForgeLogger.Instance.LogError(ex.Message, new System.Diagnostics.StackTrace(ex));
                 }
             }
 
@@ -1380,7 +1380,7 @@ namespace AForge.Video.DirectShow
                 }
                 catch ( InvalidCastException ex )
                 {
-                    AForgeLogger.Instance.LogError(ex.Message);
+                    AForgeLogger.Instance.LogError(ex.Message, new System.Diagnostics.StackTrace(ex));
                 }
 
                 if ( streamConfig != null )
@@ -1394,7 +1394,7 @@ namespace AForge.Video.DirectShow
                         }
                         catch ( Exception ex )
                         {
-                            AForgeLogger.Instance.LogError(ex.Message);
+                            AForgeLogger.Instance.LogError(ex.Message, new System.Diagnostics.StackTrace(ex));
                         }
                     }
 
@@ -1439,7 +1439,7 @@ namespace AForge.Video.DirectShow
             }
             catch ( Exception ex )
             {
-                AForgeLogger.Instance.LogError(ex.Message);
+                AForgeLogger.Instance.LogError(ex.Message, new System.Diagnostics.StackTrace(ex));
             }
         }
 

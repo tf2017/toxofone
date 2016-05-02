@@ -493,7 +493,7 @@ namespace NAudio.Wave
             catch (Exception e)
             {
                 // Do nothing (except report error)
-                NAudioLogger.Instance.LogError(e.Message);
+                NAudioLogger.Instance.LogError(e.Message, new System.Diagnostics.StackTrace(e));
                 exception = e;
             }
             finally
@@ -506,7 +506,7 @@ namespace NAudio.Wave
                     }
                     catch (Exception e)
                     {
-                        NAudioLogger.Instance.LogError(e.Message);
+                        NAudioLogger.Instance.LogError(e.Message, new System.Diagnostics.StackTrace(e));
                         // don't overwrite the original reason we exited the playback loop
                         if (exception == null)
 						{

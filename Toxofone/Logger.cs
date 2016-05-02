@@ -44,7 +44,8 @@
                 // collect log files older than 3 days
                 IList<FileInfo> filesToDelete = new List<FileInfo>();
                 string rootDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                foreach (string logFile in Directory.EnumerateFiles(rootDir, "Toxofone_*.log", SearchOption.TopDirectoryOnly))
+                string[] logFiles = Directory.GetFiles(rootDir, "Toxofone_*.log", SearchOption.TopDirectoryOnly);
+                foreach (string logFile in logFiles)
                 {
                     FileInfo fi = new FileInfo(Path.Combine(rootDir, logFile));
                     if (now - fi.CreationTime >= TimeSpan.FromDays(3))
@@ -61,10 +62,8 @@
         }
 
         public static void Log(LogLevel logLevel,
-            string text, 
-            [CallerFilePath] string fileName = "", 
-            [CallerMemberName] string member = "", 
-            [CallerLineNumber] int line = 0)
+            string text,
+            StackTrace stackTrace = null)
         {
             lock (staticSyncLock)
             {
@@ -78,7 +77,13 @@
                     sb.Append(DateTime.Now.ToString("HH:mm:ss.fff", CultureInfo.InvariantCulture));
                     sb.Append(" ");
 
-                    sb.AppendFormat("[{0}] {1}.{2}:{3}", Thread.CurrentThread.ManagedThreadId, Path.GetFileNameWithoutExtension(fileName), member, line);
+                    if (stackTrace != null && stackTrace.FrameCount > 0)
+                    {
+                        string fileName = stackTrace.GetFrame(0).GetFileName();
+                        string member = stackTrace.GetFrame(0).GetMethod().Name;
+                        int line = stackTrace.GetFrame(0).GetFileLineNumber();
+                        sb.AppendFormat("[{0}] {1}.{2}:{3}", Thread.CurrentThread.ManagedThreadId, Path.GetFileNameWithoutExtension(fileName), member, line);
+                    }
 
                     while (sb.Length < 72)
                     {

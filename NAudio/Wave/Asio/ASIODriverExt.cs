@@ -125,7 +125,7 @@ namespace NAudio.Wave.Asio
             }
             catch (Exception ex)
             {
-                NAudioLogger.Instance.LogError(ex.Message);
+                NAudioLogger.Instance.LogError(ex.Message, new System.Diagnostics.StackTrace(ex));
             }
             driver.ReleaseComASIODriver();
         }

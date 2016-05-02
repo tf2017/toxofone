@@ -1,7 +1,6 @@
 ﻿namespace SharpTox
 {
-    using System;
-    using System.Runtime.CompilerServices;
+    using System.Diagnostics;
 
     public abstract class SharpToxLogger
     {
@@ -25,25 +24,13 @@
             }
         }
 
-        public abstract void LogVerbose(string text,
-            [CallerFilePath] string fileName = "",
-            [CallerMemberName] string member = "",
-            [CallerLineNumber] int line = 0);
+        public abstract void LogVerbose(string text, StackTrace stackTrace = null);
 
-        public abstract void LogInfo(string text,
-            [CallerFilePath] string fileName = "",
-            [CallerMemberName] string member = "",
-            [CallerLineNumber] int line = 0);
+        public abstract void LogInfo(string text, StackTrace stackTrace = null);
 
-        public abstract void LogWarning(string text,
-            [CallerFilePath] string fileName = "",
-            [CallerMemberName] string member = "",
-            [CallerLineNumber] int line = 0);
+        public abstract void LogWarning(string text, StackTrace stackTrace = null);
 
-        public abstract void LogError(string text,
-            [CallerFilePath] string fileName = "",
-            [CallerMemberName] string member = "",
-            [CallerLineNumber] int line = 0);
+        public abstract void LogError(string text, StackTrace stackTrace = null);
     }
 
     internal sealed class DebugLogger : SharpToxLogger
@@ -64,22 +51,22 @@
         {
         }
 
-        public override void LogVerbose(string text, string fileName, string member, int line)
+        public override void LogVerbose(string text, StackTrace stackTrace)
         {
             System.Diagnostics.Debug.WriteLine(text);
         }
 
-        public override void LogInfo(string text, string fileName, string member, int line)
+        public override void LogInfo(string text, StackTrace stackTrace)
         {
             System.Diagnostics.Debug.WriteLine(text);
         }
 
-        public override void LogWarning(string text, string fileName, string member, int line)
+        public override void LogWarning(string text, StackTrace stackTrace)
         {
             System.Diagnostics.Debug.WriteLine(text);
         }
 
-        public override void LogError(string text, string fileName, string member, int line)
+        public override void LogError(string text, StackTrace stackTrace)
         {
             System.Diagnostics.Debug.WriteLine(text);
         }

@@ -112,7 +112,7 @@ namespace AForge.Video.DirectShow
             }
             catch ( Exception ex )
             {
-                AForgeLogger.Instance.LogError(ex.Message);
+                AForgeLogger.Instance.LogError(ex.Message, new System.Diagnostics.StackTrace(ex));
             }
             finally
 			{

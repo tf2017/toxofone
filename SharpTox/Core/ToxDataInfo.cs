@@ -110,7 +110,7 @@ namespace SharpTox.Core
             }
             catch (Exception e)
             {
-                SharpToxLogger.Instance.LogError(e.Message);
+                SharpToxLogger.Instance.LogError(e.Message, new System.Diagnostics.StackTrace(e));
                 return null;
             }
         }

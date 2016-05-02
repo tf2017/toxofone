@@ -243,7 +243,7 @@ namespace SharpTox.Av
                 }
                 catch (Exception e)
                 {
-                    SharpToxLogger.Instance.LogError(e.Message);
+                    SharpToxLogger.Instance.LogError(e.Message, new System.Diagnostics.StackTrace(e));
                 }
             }
 

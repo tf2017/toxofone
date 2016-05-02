@@ -401,7 +401,7 @@ namespace NAudio.Wave
                         catch (Exception e)
                         {
                             // one likely cause is soundcard being unplugged
-                            NAudioLogger.Instance.LogError(e.Message);
+                            NAudioLogger.Instance.LogError(e.Message, new StackTrace(e));
                             exception = e;
                         }
                     }

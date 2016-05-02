@@ -77,11 +77,8 @@
 
                         try
                         {
-                            EventWaitHandle activateEvent = null;
-                            if (EventWaitHandle.TryOpenExisting(MainForm.ActivateMessageEventName, out activateEvent))
-                            {
-                                activateEvent.Set();
-                            }
+                            EventWaitHandle activateEvent = EventWaitHandle.OpenExisting(MainForm.ActivateMessageEventName);
+                            activateEvent.Set();
                         }
                         catch
                         {
@@ -547,70 +544,70 @@
 
     internal class NAudioLoggerImpl : NAudioLogger
     {
-        public override void LogError(string text, string fileName, string member, int line)
+        public override void LogError(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Error, text, fileName, member, line);
+            Logger.Log(LogLevel.Error, text, stackTrace);
         }
 
-        public override void LogWarning(string text, string fileName, string member, int line)
+        public override void LogWarning(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Warning, text, fileName, member, line);
+            Logger.Log(LogLevel.Warning, text, stackTrace);
         }
 
-        public override void LogInfo(string text, string fileName, string member, int line)
+        public override void LogInfo(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Info, text, fileName, member, line);
+            Logger.Log(LogLevel.Info, text, stackTrace);
         }
 
-        public override void LogVerbose(string text, string fileName, string member, int line)
+        public override void LogVerbose(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Verbose, text, fileName, member, line);
+            Logger.Log(LogLevel.Verbose, text, stackTrace);
         }
     }
 
     internal class AForgeLoggerImpl : AForgeLogger
     {
-        public override void LogError(string text, string fileName, string member, int line)
+        public override void LogError(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Error, text, fileName, member, line);
+            Logger.Log(LogLevel.Error, text, stackTrace);
         }
 
-        public override void LogWarning(string text, string fileName, string member, int line)
+        public override void LogWarning(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Warning, text, fileName, member, line);
+            Logger.Log(LogLevel.Warning, text, stackTrace);
         }
 
-        public override void LogInfo(string text, string fileName, string member, int line)
+        public override void LogInfo(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Info, text, fileName, member, line);
+            Logger.Log(LogLevel.Info, text, stackTrace);
         }
 
-        public override void LogVerbose(string text, string fileName, string member, int line)
+        public override void LogVerbose(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Verbose, text, fileName, member, line);
+            Logger.Log(LogLevel.Verbose, text, stackTrace);
         }
     }
 
     internal class SharpToxLoggerImpl : SharpToxLogger
     {
-        public override void LogError(string text, string fileName, string member, int line)
+        public override void LogError(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Error, text, fileName, member, line);
+            Logger.Log(LogLevel.Error, text, stackTrace);
         }
 
-        public override void LogWarning(string text, string fileName, string member, int line)
+        public override void LogWarning(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Warning, text, fileName, member, line);
+            Logger.Log(LogLevel.Warning, text, stackTrace);
         }
 
-        public override void LogInfo(string text, string fileName, string member, int line)
+        public override void LogInfo(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Info, text, fileName, member, line);
+            Logger.Log(LogLevel.Info, text, stackTrace);
         }
 
-        public override void LogVerbose(string text, string fileName, string member, int line)
+        public override void LogVerbose(string text, StackTrace stackTrace)
         {
-            Logger.Log(LogLevel.Verbose, text, fileName, member, line);
+            Logger.Log(LogLevel.Verbose, text, stackTrace);
         }
     }
 }

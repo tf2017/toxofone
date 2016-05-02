@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Runtime.ExceptionServices;
 using System.Threading;
 using NAudio.Mixer;
 
@@ -120,7 +119,6 @@ namespace NAudio.Wave
             ThreadPool.QueueUserWorkItem((state) => RecordThread(), null);
         }
 
-        [HandleProcessCorruptedStateExceptions]
         private void RecordThread()
         {
             Exception exception = null;
@@ -130,7 +128,7 @@ namespace NAudio.Wave
             }
             catch (Exception e)
             {
-                NAudioLogger.Instance.LogError(e.Message);
+                NAudioLogger.Instance.LogError(e.Message, new System.Diagnostics.StackTrace(e));
                 exception = e;
             }
             finally

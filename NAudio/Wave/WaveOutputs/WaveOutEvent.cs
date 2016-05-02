@@ -135,7 +135,7 @@ namespace NAudio.Wave
             }
             catch (Exception e)
             {
-                NAudioLogger.Instance.LogError(e.Message);
+                NAudioLogger.Instance.LogError(e.Message, new StackTrace(e));
                 exception = e;
             }
             finally

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Runtime.ExceptionServices;
 using System.Threading;
 using NAudio.Mixer;
 
@@ -130,7 +129,6 @@ namespace NAudio.Wave
         /// <summary>
         /// Called when we get a new buffer of recorded data
         /// </summary>
-        [HandleProcessCorruptedStateExceptions]
         private void Callback(IntPtr waveInHandle, WaveInterop.WaveMessage message, IntPtr userData, WaveHeader waveHeader, IntPtr reserved)
         {
             if (message == WaveInterop.WaveMessage.WaveInData)
@@ -149,7 +147,7 @@ namespace NAudio.Wave
                     }
                     catch (Exception e)
                     {
-                        NAudioLogger.Instance.LogError(e.Message);
+                        NAudioLogger.Instance.LogError(e.Message, new System.Diagnostics.StackTrace(e));
                         recording = false;
                         RaiseRecordingStopped(e);
                     }

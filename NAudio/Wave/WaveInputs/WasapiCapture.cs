@@ -237,7 +237,7 @@ namespace NAudio.CoreAudioApi
             }
             catch (Exception e)
             {
-                NAudioLogger.Instance.LogError(e.Message);
+                NAudioLogger.Instance.LogError(e.Message, new System.Diagnostics.StackTrace(e));
                 exception = e;
             }
             finally
