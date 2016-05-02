@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using SharpTox.Encryption;
 
 namespace SharpTox.Core
@@ -324,13 +323,13 @@ namespace SharpTox.Core
                         _canceledEvent.WaitOne(2000);
                     }
 
-                    _cancelEvent.Dispose();
+                    _cancelEvent.Close();
                     _cancelEvent = null;
                 }
 
                 if (_canceledEvent != null)
                 {
-                    _canceledEvent.Dispose();
+                    _canceledEvent.Close();
                     _canceledEvent = null;
                 }
             }
@@ -380,13 +379,13 @@ namespace SharpTox.Core
                     _canceledEvent.WaitOne(2000);
                 }
 
-                _cancelEvent.Dispose();
+                _cancelEvent.Close();
                 _cancelEvent = null;
             }
 
             if (_canceledEvent != null)
             {
-                _canceledEvent.Dispose();
+                _canceledEvent.Close();
                 _canceledEvent = null;
             }
 

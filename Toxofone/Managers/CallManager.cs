@@ -380,7 +380,8 @@
                 {
                     // start ringing
                     this.ringRepeatTimer.Change(TimeSpan.FromMilliseconds(ringTotalTime.TotalMilliseconds * 1.75), TimeSpan.FromMilliseconds(-1L));
-                    this.totalRingingSoundTimer.Restart();
+                    this.totalRingingSoundTimer.Reset();
+                    this.totalRingingSoundTimer.Start();
                 }
             }
         }
@@ -965,7 +966,8 @@
                 }
             }
 
-            this.sendAudioFrameTimer.Restart();
+            this.sendAudioFrameTimer.Reset();
+            this.sendAudioFrameTimer.Start();
             try
             {
                 var error = ToxAvErrorSendFrame.Ok;
@@ -1051,7 +1053,8 @@
                 }
             }
 
-            this.sendVideoFrameTimer.Restart();
+            this.sendVideoFrameTimer.Reset();
+            this.sendVideoFrameTimer.Start();
             try
             {
                 var error = ToxAvErrorSendFrame.Ok;

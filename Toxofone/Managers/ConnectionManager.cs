@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
+    using System.Threading;
     using SharpTox.Av;
     using SharpTox.Core;
     using Toxofone.UI;
@@ -74,19 +74,19 @@
             MainForm.Instance.NotifyToxConnectionStatusChanged(e);
         }
 
-        private async void WaitAndBootstrap(int delay)
+        private void WaitAndBootstrap(int delay)
         {
-            await Task.Factory.StartNew(async () =>
+            new Thread(new ThreadStart(() =>
             {
                 // wait 'delay' seconds, check if we're connected, if not, bootstrap again
-                await Task.Delay(delay);
+                Thread.Sleep(delay);
 
                 if (!this.tox.IsConnected)
                 {
                     Logger.Log(LogLevel.Info, "We're still not connected, bootstrapping again");
                     this.DoBootstrap();
                 }
-            });
+            })) { IsBackground = true }.Start();
         }
 
         private bool Bootstrap(ToxConfigNode node)

@@ -21,7 +21,6 @@
     public static class App
     {
         public const string SingleInstanceMutexName = "$TOXOFONE_MUTEX$";
-        public const string SingleInstancePipeName = "$TOXOFONE_PIPE$";
 
         private static Mutex globalMutex = null;
 
@@ -74,31 +73,19 @@
                     if (process.Id != current.Id)
                     {
                         // we have found previous instance
-                        NamedPipeClientStream pipeClient = new NamedPipeClientStream(".", SingleInstancePipeName, PipeDirection.Out);
-                        try
-                        {
-                            pipeClient.Connect(2000);
-                        }
-                        catch (Exception e)
-                        {
-                            Logger.Log(LogLevel.Error, String.Format("Failed to connect to message pipe server: {0}", e.Message));
-                            break;
-                        }
-
                         App.ActivateInstance(process.MainWindowHandle);
 
                         try
                         {
-                            using (StreamWriter sw = new StreamWriter(pipeClient))
+                            EventWaitHandle activateEvent = null;
+                            if (EventWaitHandle.TryOpenExisting(MainForm.ActivateMessageEventName, out activateEvent))
                             {
-                                sw.WriteLine("");
-                                sw.Flush();
+                                activateEvent.Set();
                             }
                         }
-                        catch (Exception e)
+                        catch
                         {
-                            Logger.Log(LogLevel.Error, string.Format("Failed to send message to pipe server: {0}", e.Message));
-                            break;
+                            // ignore
                         }
 
                         Logger.Log(LogLevel.Info, string.Format("Previous {0} instance activated", process.ProcessName));

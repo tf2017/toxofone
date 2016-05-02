@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace SharpTox.Av
 {
@@ -106,13 +105,13 @@ namespace SharpTox.Av
                         _canceledEvent.WaitOne(2000);
                     }
 
-                    _cancelEvent.Dispose();
+                    _cancelEvent.Close();
                     _cancelEvent = null;
                 }
 
                 if (_canceledEvent != null)
                 {
-                    _canceledEvent.Dispose();
+                    _canceledEvent.Close();
                     _canceledEvent = null;
                 }
             }
@@ -179,13 +178,13 @@ namespace SharpTox.Av
                     _canceledEvent.WaitOne(2000);
                 }
 
-                _cancelEvent.Dispose();
+                _cancelEvent.Close();
                 _cancelEvent = null;
             }
 
             if (_canceledEvent != null)
             {
-                _canceledEvent.Dispose();
+                _canceledEvent.Close();
                 _canceledEvent = null;
             }
 

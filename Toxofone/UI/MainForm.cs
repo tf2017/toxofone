@@ -3,11 +3,8 @@
     using System;
     using System.Drawing;
     using System.Drawing.Drawing2D;
-    using System.IO;
-    using System.IO.Pipes;
     using System.Runtime.InteropServices;
     using System.Security.Permissions;
-    using System.Text;
     using System.Threading;
     using System.Windows.Forms;
     using SharpTox.Core;
@@ -31,6 +28,8 @@
     [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
     public partial class MainForm : Form
     {
+        public const string ActivateMessageEventName = "$TOXOFONE_EVENT$";
+
         private const int PortraitClientWidth = 640;
         private const int PortraitClientHeight = 720;
         private const int LandscapeClientWidth = 960;
@@ -41,10 +40,12 @@
         private static object staticSyncLock = new object();
         private static MainForm instance;
 
+        private readonly object syncLock = new object();
+
         private bool disposed;
 
-        private readonly object syncLock = new object();
-        private Thread pipeMessageListener;
+        private EventWaitHandle activateMessageEvent;
+        private Thread activateMessageListener;
 
         private bool formShown;
         private FormLayout formLayout;
@@ -347,9 +348,10 @@
             this.endFriendCall.Parent = this.friendVideoCamera;  // to enable transparent background
             this.endFriendCall.BackColor = Color.Transparent;
 
-            this.pipeMessageListener = new Thread(new ThreadStart(this.PipeMessageListenerProc));
-            this.pipeMessageListener.IsBackground = true;
-            this.pipeMessageListener.Start();
+            this.activateMessageEvent = new EventWaitHandle(false, EventResetMode.AutoReset, ActivateMessageEventName);
+            this.activateMessageListener = new Thread(new ThreadStart(this.ActivateMessageListenerProc));
+            this.activateMessageListener.IsBackground = true;
+            this.activateMessageListener.Start();
 
             this.callTimer = new System.Windows.Forms.Timer();
             this.callTimer.Enabled = false;
@@ -357,39 +359,25 @@
             this.callTimer.Tick += this.OnCallTimerTick;
         }
 
-        private void PipeMessageListenerProc()
+        private void ActivateMessageListenerProc()
         {
             while (true)
             {
                 try
                 {
-                    using (NamedPipeServerStream pipeServer = new NamedPipeServerStream(App.SingleInstancePipeName,
-                        PipeDirection.In, 1, PipeTransmissionMode.Byte))
+                    bool waitResult = this.activateMessageEvent.WaitOne();
+                    if (waitResult)
                     {
-                        while (true)
+                        this.BeginInvoke(new Action(() =>
                         {
-                            pipeServer.WaitForConnection();
-
-                            using (StreamReader sr = new StreamReader(pipeServer, Encoding.ASCII, false, 1024, true))
+                            this.Show();
+                            this.Visible = true;
+                            if (this.WindowState == FormWindowState.Minimized)
                             {
-                                String msgStr;
-                                while ((msgStr = sr.ReadLine()) != null)
-                                {
-                                    this.BeginInvoke(new Action(() =>
-                                    {
-                                        this.Show();
-                                        this.Visible = true;
-                                        if (this.WindowState == FormWindowState.Minimized)
-                                        {
-                                            this.WindowState = FormWindowState.Normal;
-                                        }
-                                        this.Activate();
-                                    }));
-                                }
+                                this.WindowState = FormWindowState.Normal;
                             }
-
-                            pipeServer.Disconnect();
-                        }
+                            this.Activate();
+                        }));
                     }
                 }
                 catch (ThreadAbortException)
