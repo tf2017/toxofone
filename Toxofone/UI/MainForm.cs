@@ -1441,9 +1441,9 @@
             }
         }
 
-#endregion
+        #endregion
 
-#region Tox/ToxAv event handlers
+        #region Tox/ToxAv event handlers
 
         private void OnToxConnectionStatusChanged(ToxEventArgs.ConnectionStatusEventArgs e)
         {
@@ -1713,15 +1713,15 @@
                 TimeSpan elapsedTime = DateTime.Now - this.StartTime;
                 if (elapsedTime.Hours > 0)
                 {
-                    return string.Format("Call with {0} {1:hh\\:mm\\:ss}", this.FriendName, elapsedTime);
+                    return string.Format("Call with {0} {1:00}:{2:00}:{3:00}", this.FriendName, elapsedTime.Hours, elapsedTime.Minutes, elapsedTime.Seconds);
                 }
                 else
                 {
-                    return string.Format("Call with {0} {1:mm\\:ss}", this.FriendName, elapsedTime);
+                    return string.Format("Call with {0} {1:00}:{2:00}", this.FriendName, elapsedTime.Minutes, elapsedTime.Seconds);
                 }
             }
         }
 
-#endregion
+        #endregion
     }
 }
