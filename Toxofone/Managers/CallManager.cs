@@ -852,7 +852,7 @@
                     this.callInfo.VideoDevice.StartRecording();
                 }
 
-                if (e.State.HasFlag(ToxAvFriendCallState.SendingVideo))
+                if ((e.State & ToxAvFriendCallState.SendingVideo) != 0)
                 {
                     friendCallState |= CallState.IncomingVideo;
                 }
