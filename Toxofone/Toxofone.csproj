@@ -313,15 +313,15 @@
     <EmbeddedResource Include="Resources\Svg\remove_circle_outline_gray50_24px.svg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Svg\tox_user_status_away_16px.svg" />
-    <EmbeddedResource Include="Resources\Svg\tox_user_status_away_notification_16px.svg" />
-    <EmbeddedResource Include="Resources\Svg\tox_user_status_busy_16px.svg" />
-    <EmbeddedResource Include="Resources\Svg\tox_user_status_busy_notification_16px.svg" />
-    <EmbeddedResource Include="Resources\Svg\tox_user_status_invisible_16px.svg" />
-    <EmbeddedResource Include="Resources\Svg\tox_user_status_offline_16px.svg" />
-    <EmbeddedResource Include="Resources\Svg\tox_user_status_offline_notification_16px.svg" />
-    <EmbeddedResource Include="Resources\Svg\tox_user_status_online_16px.svg" />
-    <EmbeddedResource Include="Resources\Svg\tox_user_status_online_notification_16px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_away_20px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_away_notification_20px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_busy_20px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_busy_notification_20px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_invisible_20px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_offline_20px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_offline_notification_20px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_online_20px.svg" />
+    <EmbeddedResource Include="Resources\Svg\tox_user_status_online_notification_20px.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Svg\call_end_in_circle_red_60px.svg" />

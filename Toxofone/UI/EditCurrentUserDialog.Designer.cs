@@ -149,7 +149,7 @@
             this.toxIdLabel.Location = new System.Drawing.Point(17, 138);
             this.toxIdLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.toxIdLabel.Name = "toxIdLabel";
-            this.toxIdLabel.Size = new System.Drawing.Size(54, 26);
+            this.toxIdLabel.Size = new System.Drawing.Size(60, 26);
             this.toxIdLabel.TabIndex = 4;
             this.toxIdLabel.Text = "Tox ID:";
             this.toxIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

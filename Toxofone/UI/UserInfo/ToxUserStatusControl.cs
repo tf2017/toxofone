@@ -150,24 +150,24 @@
 
         private void UpdateControl()
         {
-            string svgResName = "tox_user_status_invisible_16px";
+            string svgResName = "tox_user_status_invisible_20px";
 
             if (this.connectionStatus == ToxConnectionStatus.None)
             {
-                svgResName = "tox_user_status_offline_16px";
+                svgResName = "tox_user_status_offline_20px";
             }
             else
             {
                 switch (this.userStatus)
                 {
                     case ToxUserStatus.None:
-                        svgResName = (this.notificationCounter % 2) == 1 ? "tox_user_status_online_notification_16px" : "tox_user_status_online_16px";
+                        svgResName = (this.notificationCounter % 2) == 1 ? "tox_user_status_online_notification_20px" : "tox_user_status_online_20px";
                         break;
                     case ToxUserStatus.Busy:
-                        svgResName = (this.notificationCounter % 2) == 1 ? "tox_user_status_busy_notification_16px" : "tox_user_status_busy_16px";
+                        svgResName = (this.notificationCounter % 2) == 1 ? "tox_user_status_busy_notification_20px" : "tox_user_status_busy_20px";
                         break;
                     case ToxUserStatus.Away:
-                        svgResName = (this.notificationCounter % 2) == 1 ? "tox_user_status_away_notification_16px" : "tox_user_status_away_16px";
+                        svgResName = (this.notificationCounter % 2) == 1 ? "tox_user_status_away_notification_20px" : "tox_user_status_away_20px";
                         break;
                     default:
                         break;
