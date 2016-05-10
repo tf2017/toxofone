@@ -13,10 +13,10 @@ namespace Svg
 {
     public abstract class SvgTextBase : SvgVisualElement
     {
-        protected SvgUnitCollection _x = new SvgUnitCollection();
-        protected SvgUnitCollection _y = new SvgUnitCollection();
-        protected SvgUnitCollection _dy = new SvgUnitCollection();
-        protected SvgUnitCollection _dx = new SvgUnitCollection();
+        [CLSCompliant(false)] protected SvgUnitCollection _x = new SvgUnitCollection();
+        [CLSCompliant(false)] protected SvgUnitCollection _y = new SvgUnitCollection();
+        [CLSCompliant(false)] protected SvgUnitCollection _dy = new SvgUnitCollection();
+        [CLSCompliant(false)] protected SvgUnitCollection _dx = new SvgUnitCollection();
         private string _rotate;
         private List<float> _rotations = new List<float>();
 
@@ -216,15 +216,6 @@ namespace Svg
         }
 
         /// <summary>
-        /// Gets or sets a value to determine if anti-aliasing should occur when the element is being rendered.
-        /// </summary>
-        /// <value></value>
-        protected override bool RequiresSmoothRendering
-        {
-            get { return true; }
-        }
-
-        /// <summary>
         /// Gets the bounds of the element.
         /// </summary>
         /// <value>The bounds.</value>
@@ -259,6 +250,11 @@ namespace Svg
                     renderer.SmoothingMode = SmoothingMode.AntiAlias;
                 }
 
+                // If text color blends with background color, text will be rendered blurry
+                // To avoid it, we set SourceCopy which overwrite background color
+                var compositingMode = renderer.CompositingMode;
+                renderer.CompositingMode = CompositingMode.SourceCopy;
+
                 this.RenderFill(renderer);
                 this.RenderStroke(renderer);
                 this.RenderChildren(renderer);
@@ -268,6 +264,8 @@ namespace Svg
                 {
                     renderer.SmoothingMode = SmoothingMode.Default;
                 }
+
+                renderer.CompositingMode = compositingMode;
 
                 this.ResetClip(renderer);
                 this.PopTransforms(renderer);

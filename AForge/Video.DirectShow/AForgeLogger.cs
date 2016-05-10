@@ -1,6 +1,6 @@
 ﻿namespace AForge.Video.DirectShow
 {
-    using System;
+    using System.Diagnostics;
     using System.Runtime.CompilerServices;
 
     public abstract class AForgeLogger
@@ -66,22 +66,22 @@
 
         public override void LogVerbose(string text, string fileName, string member, int line)
         {
-            System.Diagnostics.Debug.WriteLine(text);
+            Debug.WriteLine(text);
         }
 
         public override void LogInfo(string text, string fileName, string member, int line)
         {
-            System.Diagnostics.Debug.WriteLine(text);
+            Debug.WriteLine(text);
         }
 
         public override void LogWarning(string text, string fileName, string member, int line)
         {
-            System.Diagnostics.Debug.WriteLine(text);
+            Debug.WriteLine(text);
         }
 
         public override void LogError(string text, string fileName, string member, int line)
         {
-            System.Diagnostics.Debug.WriteLine(text);
+            Debug.WriteLine(text);
         }
     }
 }

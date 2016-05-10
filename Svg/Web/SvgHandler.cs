@@ -135,7 +135,7 @@ namespace Svg.Web
                     }
                     catch (Exception exc)
                     {
-                        System.Diagnostics.Trace.TraceError("An error occured while attempting to render the SVG image '" + this._state._context.Request.PhysicalPath + "': " + exc.Message);
+                        SvgLogger.Instance.LogError(string.Format("An error occured while attempting to render the SVG image '{0}': {1}", this._state._context.Request.PhysicalPath, exc.Message));
                     }
                     finally
                     {

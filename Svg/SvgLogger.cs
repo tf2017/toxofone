@@ -1,27 +1,27 @@
-﻿namespace NAudio
+﻿namespace Svg
 {
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
 
-    public abstract class NAudioLogger
+    public abstract class SvgLogger
     {
-        private static NAudioLogger instanceInner;
+        private static SvgLogger instanceInner;
 
-        public static NAudioLogger Instance
+        public static SvgLogger Instance
         {
             get
             {
-                if (NAudioLogger.instanceInner == null)
+                if (SvgLogger.instanceInner == null)
                 {
                     return DebugLogger.Instance;
                 }
 
-                return NAudioLogger.instanceInner;
+                return SvgLogger.instanceInner;
             }
 
             set
             {
-                NAudioLogger.instanceInner = value;
+                SvgLogger.instanceInner = value;
             }
         }
 
@@ -46,7 +46,7 @@
             [CallerLineNumber] int line = 0);
     }
 
-    internal sealed class DebugLogger : NAudioLogger
+    internal sealed class DebugLogger : SvgLogger
     {
         private static readonly DebugLogger instanceInner;
 
