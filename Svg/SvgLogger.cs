@@ -1,26 +1,26 @@
-﻿namespace NAudio
+﻿namespace Svg
 {
     using System.Diagnostics;
 
-    public abstract class NAudioLogger
+    public abstract class SvgLogger
     {
-        private static NAudioLogger instanceInner;
+        private static SvgLogger instanceInner;
 
-        public static NAudioLogger Instance
+        public static SvgLogger Instance
         {
             get
             {
-                if (NAudioLogger.instanceInner == null)
+                if (SvgLogger.instanceInner == null)
                 {
                     return DebugLogger.Instance;
                 }
 
-                return NAudioLogger.instanceInner;
+                return SvgLogger.instanceInner;
             }
 
             set
             {
-                NAudioLogger.instanceInner = value;
+                SvgLogger.instanceInner = value;
             }
         }
 
@@ -33,7 +33,7 @@
         public abstract void LogError(string text, StackTrace stackTrace = null);
     }
 
-    internal sealed class DebugLogger : NAudioLogger
+    internal sealed class DebugLogger : SvgLogger
     {
         private static readonly DebugLogger instanceInner;
 
@@ -53,22 +53,22 @@
 
         public override void LogVerbose(string text, StackTrace stackTrace)
         {
-            Debug.WriteLine(text);
+            Trace.TraceInformation(text);
         }
 
         public override void LogInfo(string text, StackTrace stackTrace)
         {
-            Debug.WriteLine(text);
+            Trace.TraceInformation(text);
         }
 
         public override void LogWarning(string text, StackTrace stackTrace)
         {
-            Debug.WriteLine(text);
+            Trace.TraceWarning(text);
         }
 
         public override void LogError(string text, StackTrace stackTrace)
         {
-            Debug.WriteLine(text);
+            Trace.TraceError(text);
         }
     }
 }

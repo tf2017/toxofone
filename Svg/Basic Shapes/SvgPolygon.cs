@@ -31,7 +31,7 @@ namespace Svg
         /// Gets or sets the marker (end cap) of the path.
         /// </summary>
         [SvgAttribute("marker-end")]
-        public Uri MarkerEnd
+        public virtual Uri MarkerEnd
         {
             get { return this.Attributes.GetAttribute<Uri>("marker-end").ReplaceWithNullIfNone(); }
             set { this.Attributes["marker-end"] = value; }
@@ -42,7 +42,7 @@ namespace Svg
         /// Gets or sets the marker (start cap) of the path.
         /// </summary>
         [SvgAttribute("marker-mid")]
-        public Uri MarkerMid
+        public virtual Uri MarkerMid
         {
             get { return this.Attributes.GetAttribute<Uri>("marker-mid").ReplaceWithNullIfNone(); }
             set { this.Attributes["marker-mid"] = value; }
@@ -53,15 +53,10 @@ namespace Svg
         /// Gets or sets the marker (start cap) of the path.
         /// </summary>
         [SvgAttribute("marker-start")]
-        public Uri MarkerStart
+        public virtual Uri MarkerStart
         {
             get { return this.Attributes.GetAttribute<Uri>("marker-start").ReplaceWithNullIfNone(); }
             set { this.Attributes["marker-start"] = value; }
-        }
-
-        protected override bool RequiresSmoothRendering
-        {
-            get { return true; }
         }
 
         public override GraphicsPath Path(ISvgRenderer renderer)
@@ -100,7 +95,7 @@ namespace Svg
                 }
                 catch
                 {
-                    Trace.TraceError("Error parsing points");
+                    SvgLogger.Instance.LogError("Error parsing points");
                 }
 
                 this._path.CloseFigure();
@@ -147,18 +142,18 @@ namespace Svg
         }
 
 
-		public override SvgElement DeepCopy()
-		{
-			return DeepCopy<SvgPolygon>();
-		}
+        public override SvgElement DeepCopy()
+        {
+            return DeepCopy<SvgPolygon>();
+        }
 
-		public override SvgElement DeepCopy<T>()
-		{
-			var newObj = base.DeepCopy<T>() as SvgPolygon;
-			newObj.Points = new SvgPointCollection();
-			foreach (var pt in this.Points)
-				newObj.Points.Add(pt);
-			return newObj;
-		}
+        public override SvgElement DeepCopy<T>()
+        {
+            var newObj = base.DeepCopy<T>() as SvgPolygon;
+            newObj.Points = new SvgPointCollection();
+            foreach (var pt in this.Points)
+                newObj.Points.Add(pt);
+            return newObj;
+        }
     }
 }

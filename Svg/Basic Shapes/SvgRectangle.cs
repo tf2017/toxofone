@@ -159,7 +159,13 @@ namespace Svg
         /// </summary>
         protected override bool RequiresSmoothRendering
         {
-            get { return (CornerRadiusX.Value > 0 || CornerRadiusY.Value > 0); }
+            get
+            {
+                if (base.RequiresSmoothRendering)
+                    return (CornerRadiusX.Value > 0 || CornerRadiusY.Value > 0);
+                else
+                    return false;
+            }
         }
 
         /// <summary>
@@ -193,8 +199,8 @@ namespace Svg
                   // Starting location which take consideration of stroke width
                   SvgPoint strokedLocation = new SvgPoint(Location.X - halfStrokeWidth, Location.Y - halfStrokeWidth);
 
-                  var width = this.Width.ToDeviceValue(renderer, UnitRenderingType.Horizontal, this) + base.StrokeWidth;
-                  var height = this.Height.ToDeviceValue(renderer, UnitRenderingType.Vertical, this) + base.StrokeWidth;
+                  var width = this.Width.ToDeviceValue(renderer, UnitRenderingType.Horizontal, this) + halfStrokeWidth;
+                  var height = this.Height.ToDeviceValue(renderer, UnitRenderingType.Vertical, this) + halfStrokeWidth;
                   
                   var rectangle = new RectangleF(strokedLocation.ToDeviceValue(renderer, this), new SizeF(width, height));
 

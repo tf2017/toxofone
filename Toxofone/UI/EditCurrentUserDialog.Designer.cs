@@ -149,7 +149,7 @@
             this.toxIdLabel.Location = new System.Drawing.Point(17, 138);
             this.toxIdLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.toxIdLabel.Name = "toxIdLabel";
-            this.toxIdLabel.Size = new System.Drawing.Size(48, 26);
+            this.toxIdLabel.Size = new System.Drawing.Size(54, 26);
             this.toxIdLabel.TabIndex = 4;
             this.toxIdLabel.Text = "Tox ID:";
             this.toxIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -161,7 +161,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.toxIdStaticText.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.toxIdStaticText.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.toxIdStaticText.Location = new System.Drawing.Point(72, 138);
+            this.toxIdStaticText.Location = new System.Drawing.Point(78, 138);
             this.toxIdStaticText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.toxIdStaticText.Name = "toxIdStaticText";
             this.toxIdStaticText.Size = new System.Drawing.Size(342, 26);
@@ -175,7 +175,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.toxIdStaticText2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.toxIdStaticText2.Font = new System.Drawing.Font("Courier New", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.toxIdStaticText2.Location = new System.Drawing.Point(72, 164);
+            this.toxIdStaticText2.Location = new System.Drawing.Point(78, 164);
             this.toxIdStaticText2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.toxIdStaticText2.Name = "toxIdStaticText2";
             this.toxIdStaticText2.Size = new System.Drawing.Size(342, 26);
@@ -199,7 +199,7 @@
             // copiedToClipboardLabel
             // 
             this.copiedToClipboardLabel.Font = new System.Drawing.Font("Symbol", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.copiedToClipboardLabel.Location = new System.Drawing.Point(421, 138);
+            this.copiedToClipboardLabel.Location = new System.Drawing.Point(425, 138);
             this.copiedToClipboardLabel.Name = "copiedToClipboardLabel";
             this.copiedToClipboardLabel.Size = new System.Drawing.Size(29, 28);
             this.copiedToClipboardLabel.TabIndex = 8;

@@ -263,18 +263,18 @@ namespace Svg
 
                 try
                 {
-					if (attributeName == "opacity" && attributeValue == "undefined")
-					{
-						attributeValue = "1";
-					}
+                    if (attributeName == "opacity" && attributeValue == "undefined")
+                    {
+                        attributeValue = "1";
+                    }
 
-					descriptor.SetValue(element, descriptor.Converter.ConvertFrom(document, CultureInfo.InvariantCulture, attributeValue));
-					
+                    descriptor.SetValue(element, descriptor.Converter.ConvertFrom(document, CultureInfo.InvariantCulture, attributeValue));
+                    
 
                 }
                 catch
                 {
-                    Trace.TraceWarning(string.Format("Attribute '{0}' cannot be set - type '{1}' cannot convert from string '{2}'.", attributeName, descriptor.PropertyType.FullName, attributeValue));
+                    SvgLogger.Instance.LogWarning(string.Format("Attribute '{0}' cannot be set - type '{1}' cannot convert from string '{2}'.", attributeName, descriptor.PropertyType.FullName, attributeValue));
                 }
             }
             else

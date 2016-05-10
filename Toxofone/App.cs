@@ -2,8 +2,6 @@
 {
     using System;
     using System.Diagnostics;
-    using System.IO;
-    using System.IO.Pipes;
     using System.Reflection;
     using System.Runtime.InteropServices;
     using System.Threading;
@@ -14,6 +12,7 @@
     using SharpTox;
     using SharpTox.Av;
     using SharpTox.Core;
+    using Svg;
     using Toxofone.Devices;
     using Toxofone.Managers;
     using Toxofone.UI;
@@ -107,6 +106,7 @@
                 NAudioLogger.Instance = new NAudioLoggerImpl();
                 AForgeLogger.Instance = new AForgeLoggerImpl();
                 SharpToxLogger.Instance = new SharpToxLoggerImpl();
+                SvgLogger.Instance = new SvgLoggerImpl();
 
                 Logger.CleanupLogs();
                 Config.Instance.Reload();
@@ -589,6 +589,29 @@
     }
 
     internal class SharpToxLoggerImpl : SharpToxLogger
+    {
+        public override void LogError(string text, StackTrace stackTrace)
+        {
+            Logger.Log(LogLevel.Error, text, stackTrace);
+        }
+
+        public override void LogWarning(string text, StackTrace stackTrace)
+        {
+            Logger.Log(LogLevel.Warning, text, stackTrace);
+        }
+
+        public override void LogInfo(string text, StackTrace stackTrace)
+        {
+            Logger.Log(LogLevel.Info, text, stackTrace);
+        }
+
+        public override void LogVerbose(string text, StackTrace stackTrace)
+        {
+            Logger.Log(LogLevel.Verbose, text, stackTrace);
+        }
+    }
+
+    internal class SvgLoggerImpl : SvgLogger
     {
         public override void LogError(string text, StackTrace stackTrace)
         {

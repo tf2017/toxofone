@@ -53,22 +53,22 @@
 
         public override void LogVerbose(string text, StackTrace stackTrace)
         {
-            System.Diagnostics.Debug.WriteLine(text);
+            Debug.WriteLine(text);
         }
 
         public override void LogInfo(string text, StackTrace stackTrace)
         {
-            System.Diagnostics.Debug.WriteLine(text);
+            Debug.WriteLine(text);
         }
 
         public override void LogWarning(string text, StackTrace stackTrace)
         {
-            System.Diagnostics.Debug.WriteLine(text);
+            Debug.WriteLine(text);
         }
 
         public override void LogError(string text, StackTrace stackTrace)
         {
-            System.Diagnostics.Debug.WriteLine(text);
+            Debug.WriteLine(text);
         }
     }
 }
